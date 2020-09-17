@@ -6,7 +6,7 @@
 #include "glad/glad.h"
 #include "GLFW/glfw3.h"
 
-#include "ShaderProgram.h"
+#include "Shaders/ShaderProgram/ShaderProgram.h"
 
 
 
@@ -62,13 +62,13 @@ auto main() -> int
 	//===============================================================================
 
 
-	OGL::VertexShader vShader("vert1.vert.glsl");
+	OGL::VertexShader vShader("Shaders/ShaderSources/Vertex/vert1.vert.glsl");
 
 
 	//===============================================================================
 	
 
-	OGL::FragmentShader fShader("frag1.frag.glsl");
+	OGL::FragmentShader fShader("Shaders/ShaderSources/Fragment/frag1.frag.glsl");
 
 
 	//===============================================================================

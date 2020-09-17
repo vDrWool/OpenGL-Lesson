@@ -3,7 +3,7 @@
 #include <string>
 
 #include "glad/glad.h"
-#include "Shader.h"
+#include "../AbstractShader/Shader.h"
 
 namespace OGL
 {

@@ -4,8 +4,8 @@
 
 #include "glad/glad.h"
 
-#include "VertexShader.h"
-#include "FragmentShader.h"
+#include "../VertexShader/VertexShader.h"
+#include "../FragmentShader/FragmentShader.h"
 
 namespace OGL
 {
