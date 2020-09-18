@@ -2,8 +2,6 @@
 #include <string>
 #include <iostream>
 
-#include "glad/glad.h"
-
 #include "../VertexShader/VertexShader.h"
 #include "../FragmentShader/FragmentShader.h"
 

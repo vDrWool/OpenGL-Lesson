@@ -1,6 +1,5 @@
 #include <iostream>
 #include <string>
-#include <sstream>
 #include <random>
 
 #include "glad/glad.h"
@@ -24,7 +23,7 @@ auto main() -> int
 	GLFWwindow* mainWindow{ glfwCreateWindow(800, 640, "GLFW window", nullptr, nullptr) };
 	if (mainWindow == nullptr)
 	{
-		std::cout << "ERROR: Failed to create GLFW window!" << std::endl;
+		std::cerr << "ERROR: Failed to create GLFW window!" << std::endl;
 		glfwTerminate();
 		return -1;
 	}
@@ -32,9 +31,9 @@ auto main() -> int
 
 	if (!gladLoadGLLoader(reinterpret_cast<GLADloadproc>(glfwGetProcAddress)))
 	{
-		std::cout << "ERROR: Failed to initialize GLAD!" << std::endl;
+		std::cerr << "ERROR: Failed to initialize GLAD!" << std::endl;
 		glfwTerminate();
-		return -1;
+		return -2;
 	}
 
 	glViewport(0, 0, 800, 640);
@@ -82,18 +81,17 @@ auto main() -> int
 
 	// Вершины примитива.
 	GLfloat vertices1[] = {
-		-0.1,  0.1,  0.0,   1.0f, 0.0f, 0.0f,
-		-0.9,  0.1,  0.0,   0.0f, 1.0f, 0.0f,
-		-0.5,  0.9,  0.0,   0.0f, 0.0f, 1.0f
+		-0.1f,  0.1f,  0.0f,   1.0f, 0.0f, 0.0f,
+		-0.9f,  0.1f,  0.0f,   0.0f, 1.0f, 0.0f,
+		-0.5f,  0.9f,  0.0f,   0.0f, 0.0f, 1.0f
 	};
 	GLfloat vertices2[] = {
-		 0.1,  0.1,  0.0,   1.0f, 0.0f, 0.0f,
-		 0.9,  0.1,  0.0,   0.0f, 1.0f, 0.0f,
-		 0.5,  0.9,  0.0,   0.0f, 0.0f, 1.0f
+		 0.1f,  0.1f,  0.0f,   1.0f, 0.0f, 0.0f,
+		 0.9f,  0.1f,  0.0f,   0.0f, 1.0f, 0.0f,
+		 0.5f,  0.9f,  0.0f,   0.0f, 0.0f, 1.0f
 	};
 
 
-	// Создание объекта вершиного массива.
 	GLuint VAO[2]{}, VBO[2]{};
 	glGenVertexArrays(2, VAO);
 	glGenBuffers(2, VBO);

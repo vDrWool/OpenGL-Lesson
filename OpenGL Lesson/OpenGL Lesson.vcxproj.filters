@@ -21,35 +21,58 @@
     <ClCompile Include="glad.c">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="Shader.cpp">
+    <ClCompile Include="Shaders\AbstractShader\Shader.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="VertexShader.cpp">
+    <ClCompile Include="Shaders\FragmentShader\FragmentShader.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="FragmentShader.cpp">
+    <ClCompile Include="Shaders\ShaderProgram\ShaderProgram.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="ShaderProgram.cpp">
+    <ClCompile Include="Shaders\VertexShader\VertexShader.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="VertexObjects\AbstarctObject\AbstVertObject.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="VertexObjects\ElementBufferObject(EBO)\EBO.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="VertexObjects\VertexArrayObject(VAO)\VAO.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="VertexObjects\VertexBufferObject(VBO)\VBO.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Shader.h">
+    <ClInclude Include="Shaders\AbstractShader\Shader.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="VertexShader.h">
+    <ClInclude Include="Shaders\FragmentShader\FragmentShader.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="FragmentShader.h">
+    <ClInclude Include="Shaders\ShaderProgram\ShaderProgram.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="ShaderProgram.h">
+    <ClInclude Include="Shaders\VertexShader\VertexShader.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="VertexObjects\AbstarctObject\AbstVertObject.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="VertexObjects\ElementBufferObject(EBO)\EBO.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="VertexObjects\VertexArrayObject(VAO)\VAO.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="VertexObjects\VertexBufferObject(VBO)\VBO.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="frag1.frag.glsl" />
-    <None Include="vert1.vert.glsl" />
+    <None Include="Shaders\ShadersSources\Vertex\vert1.vert.glsl" />
   </ItemGroup>
 </Project>

@@ -12,8 +12,8 @@ namespace OGL{
 	public:
 		Shader(std::string sourcePath, GLenum type);
 
-		const char* getShaderSource() const noexcept;
-		GLuint getID() const noexcept;
+		[[nodiscard]] const char* getShaderSource() const noexcept;
+		[[nodiscard]] GLuint getID() const noexcept;
 
 		virtual ~Shader() noexcept;
 	protected:
