@@ -1,15 +1,20 @@
 #include "ShaderProgram.h"
 
-OGL::ShaderProgram::ShaderProgram(const VertexShader& vShader, const FragmentShader& fShader) noexcept
+
+OGL::ShaderProgram::ShaderProgram(const VertexShader&& vShader,
+								  const FragmentShader&& fShader,
+								  const GeometryShader&& gShader) noexcept
 {
 	this->_ID = glCreateProgram();
 	glAttachShader(this->_ID, vShader.getID());
 	glAttachShader(this->_ID, fShader.getID());
+	if (gShader.getID() != 0)
+		glAttachShader(this->_ID, gShader.getID());
 	glLinkProgram(this->_ID);
 
 	GLint success{};
-	glGetShaderiv(this->_ID, GL_LINK_STATUS, &success);
-	if (GLchar infoLog[512]{}; success == GL_FALSE)
+	glGetProgramiv(this->_ID, GL_LINK_STATUS, &success);
+	if (GLchar infoLog[512]{}; !success)
 	{
 		glGetProgramInfoLog(this->_ID, 512, nullptr, infoLog);
 		std::cout << "ERROR::SHADER::PROGRAM::LINKING_FAILED\n" << infoLog << std::endl;

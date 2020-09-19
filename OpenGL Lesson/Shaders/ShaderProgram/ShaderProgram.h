@@ -2,8 +2,7 @@
 #include <string>
 #include <iostream>
 
-#include "../VertexShader/VertexShader.h"
-#include "../FragmentShader/FragmentShader.h"
+#include "../Shader/Shader.h"
 
 namespace OGL
 {
@@ -12,7 +11,9 @@ namespace OGL
 	public:
 		ShaderProgram() = delete;
 
-		ShaderProgram(const VertexShader&, const FragmentShader&) noexcept;
+		ShaderProgram(const VertexShader&&,
+			          const FragmentShader&&,
+			          const GeometryShader&& = GeometryShader()) noexcept;
 		 
 		void use() const noexcept;
 

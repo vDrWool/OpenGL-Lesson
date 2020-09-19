@@ -153,26 +153,15 @@
   <ItemGroup>
     <ClCompile Include="glad.c" />
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="Shaders\AbstractShader\Shader.cpp" />
-    <ClCompile Include="Shaders\FragmentShader\FragmentShader.cpp" />
+    <ClCompile Include="Shaders\Shader\Shader.cpp" />
     <ClCompile Include="Shaders\ShaderProgram\ShaderProgram.cpp" />
-    <ClCompile Include="Shaders\VertexShader\VertexShader.cpp" />
-    <ClCompile Include="VertexObjects\AbstarctObject\AbstVertObject.cpp" />
-    <ClCompile Include="VertexObjects\ElementBufferObject(EBO)\EBO.cpp" />
-    <ClCompile Include="VertexObjects\VertexArrayObject(VAO)\VAO.cpp" />
-    <ClCompile Include="VertexObjects\VertexBufferObject(VBO)\VBO.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Shaders\AbstractShader\Shader.h" />
-    <ClInclude Include="Shaders\FragmentShader\FragmentShader.h" />
+    <ClInclude Include="Shaders\Shader\Shader.h" />
     <ClInclude Include="Shaders\ShaderProgram\ShaderProgram.h" />
-    <ClInclude Include="Shaders\VertexShader\VertexShader.h" />
-    <ClInclude Include="VertexObjects\AbstarctObject\AbstVertObject.h" />
-    <ClInclude Include="VertexObjects\ElementBufferObject(EBO)\EBO.h" />
-    <ClInclude Include="VertexObjects\VertexArrayObject(VAO)\VAO.h" />
-    <ClInclude Include="VertexObjects\VertexBufferObject(VBO)\VBO.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Shaders\ShadersSources\Fragment\frag1.frag.glsl" />
     <None Include="Shaders\ShadersSources\Vertex\vert1.vert.glsl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

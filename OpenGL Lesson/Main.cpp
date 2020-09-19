@@ -5,6 +5,9 @@
 #include "glad/glad.h"
 #include "GLFW/glfw3.h"
 
+
+
+#define DEBUG_
 #include "Shaders/ShaderProgram/ShaderProgram.h"
 
 
@@ -61,19 +64,10 @@ auto main() -> int
 	//===============================================================================
 
 
-	OGL::VertexShader vShader("Shaders/ShaderSources/Vertex/vert1.vert.glsl");
-
-
-	//===============================================================================
-	
-
-	OGL::FragmentShader fShader("Shaders/ShaderSources/Fragment/frag1.frag.glsl");
-
-
-	//===============================================================================
-
-
-	OGL::ShaderProgram progShader(vShader, fShader);
+	OGL::ShaderProgram progShader(
+								  OGL::VertexShader("Shaders/ShadersSources/Vertex/vert1.vert.glsl"),
+								  OGL::FragmentShader("Shaders/ShadersSources/Fragment/frag1.frag.glsl")
+								 );
 
 
 	//===============================================================================
@@ -90,7 +84,6 @@ auto main() -> int
 		 0.9f,  0.1f,  0.0f,   0.0f, 1.0f, 0.0f,
 		 0.5f,  0.9f,  0.0f,   0.0f, 0.0f, 1.0f
 	};
-
 
 	GLuint VAO[2]{}, VBO[2]{};
 	glGenVertexArrays(2, VAO);
@@ -140,21 +133,21 @@ auto main() -> int
 
 		progShader.use();
 
-
 		glBindVertexArray(VAO[0]);
 		glDrawArrays(GL_TRIANGLES, 0, 3);
 		
 		glBindVertexArray(VAO[1]);
 		glDrawArrays(GL_TRIANGLES, 0, 3);
-		
+
 
 		glfwSwapBuffers(mainWindow);
 		glfwPollEvents();
 	}
 
 
-	glDeleteVertexArrays(2, VAO);
 	glDeleteBuffers(2, VBO);
+	glDeleteVertexArrays(2, VAO);
+
 
 	glfwTerminate();
 	return 0;

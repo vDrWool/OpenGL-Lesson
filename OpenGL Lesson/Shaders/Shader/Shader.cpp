@@ -1,11 +1,17 @@
 #include "Shader.h"
 
-OGL::Shader::Shader(std::string sourcePath, GLenum type)
+
+template<GLenum type>
+OGL::Shader<type>::Shader() {}
+
+template<GLenum type>
+OGL::Shader<type>::Shader(std::string sourcePath)
 {
-	this->_path = sourcePath;
+	this->_path = sourcePath.c_str();
 
 	try
 	{
+
 		std::ifstream vShaderFile{};
 		std::stringstream vShaderStream{};
 		std::string tempSource{};
@@ -19,46 +25,57 @@ OGL::Shader::Shader(std::string sourcePath, GLenum type)
 		tempSource = vShaderStream.str();
 		this->_shaderSource = tempSource.c_str();
 
-		std::cout << "============================================"
-			      << std::endl
-			      << this->_shaderSource << std::endl 
-			      << "============================================"
-			      << std::endl;
+//#ifdef DEBUG_
+		std::string whatShader{};
+		if (sourcePath.rfind(".vert.glsl") != std::string::npos)
+			whatShader = "VERTEX_SHADER_SOURCE:";
+		else if (sourcePath.rfind(".frag.glsl") != std::string::npos)
+			whatShader = "FRAGMENT_SHADER_SOURCE:";
+		else
+			whatShader = "GEOMETRY_SHADER_SOURCE:";
 
-		this->privateCreateShader(type);
+		std::cout << "============================================"
+			<< std::endl
+			<< whatShader
+			<< std::endl
+			<< this->_shaderSource << std::endl
+			<< "============================================"
+			<< std::endl;
+//#endif
+		this->privateCreateShader();
 	}
 	catch (std::ifstream::failure e)
 	{
 		std::cout << "ERROR::SHADER::FILE_NOT_SUCCESFULLY_READ\n" << "Path:" << this->_path << std::endl;
 	}
-} 
+}
 
 
-
-[[nodiscard]] const char* OGL::Shader::getShaderSource() const noexcept
+template<GLenum type>
+[[nodiscard]] const char* OGL::Shader<type>::getShaderSource() const noexcept
 {
 	return this->_shaderSource;
 }
 
-[[nodiscard]] GLuint OGL::Shader::getID() const noexcept
+template<GLenum type>
+[[nodiscard]] GLuint OGL::Shader<type>::getID() const noexcept
 {
 	return this->_ID;
 }
 
 
-
-OGL::Shader::~Shader() noexcept
+template<GLenum type>
+OGL::Shader<type>::~Shader() noexcept
 {
 	glDeleteShader(this->_ID);
 }
 
 
-
 // (Private methods) =======================================================================================
 
 
-
-void OGL::Shader::privateCreateShader(GLenum type)
+template<GLenum type>
+void OGL::Shader<type>::privateCreateShader()
 {
 	this->_ID = glCreateShader(type);
 	glShaderSource(this->_ID, 1, &(this->_shaderSource), nullptr);
@@ -80,3 +97,8 @@ void OGL::Shader::privateCreateShader(GLenum type)
 		}
 	}
 }
+
+
+template class OGL::Shader<GL_VERTEX_SHADER>;
+template class OGL::Shader<GL_FRAGMENT_SHADER>;
+template class OGL::Shader<GL_GEOMETRY_SHADER>;

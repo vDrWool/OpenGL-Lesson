@@ -7,20 +7,26 @@
 #include "glad/glad.h"
 
 namespace OGL{
+	template<GLenum type>
 	class Shader
 	{
 	public:
-		Shader(std::string sourcePath, GLenum type);
+		Shader();
+		Shader(std::string sourcePath);
 
 		[[nodiscard]] const char* getShaderSource() const noexcept;
 		[[nodiscard]] GLuint getID() const noexcept;
 
 		virtual ~Shader() noexcept;
 	protected:
-		void privateCreateShader(GLenum type);
+		void privateCreateShader();
 	protected:
-		std::string _path{};
+		const char* _path{};
 		const char* _shaderSource{};
 		GLuint _ID{};
 	};
+
+	using VertexShader   = Shader<GL_VERTEX_SHADER>;
+	using FragmentShader = Shader<GL_FRAGMENT_SHADER>;
+	using GeometryShader = Shader<GL_GEOMETRY_SHADER>;
 }
