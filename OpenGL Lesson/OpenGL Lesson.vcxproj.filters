@@ -15,29 +15,73 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Main.cpp">
+    <ClCompile Include="Engine\ForDubuging\OGLdebug.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="glad.c">
+    <ClCompile Include="Engine\ForDubuging\OGLdebug.h">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="Shaders\ShaderProgram\ShaderProgram.cpp">
+    <ClCompile Include="Engine\Objects\VertexBufferObject\VertexBufferObject.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="Shaders\Shader\Shader.cpp">
+    <ClCompile Include="Engine\Shaders\Shader\Shader.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Shaders\ShaderProgram\ShaderProgram.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Main.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Utilities\stb_image.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Utilities\glad.c">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Objects\ElementBufferObject\ElementBufferObject.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Objects\VertexArrayObject\VertexArrayObject.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Objects\VertexArrayObject\VertexBufferLayout.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Shaders\ShaderProgram\ShaderProgram.h">
+    <ClInclude Include="Engine\Objects\VertexBufferObject\VertexBufferObject.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="Shaders\Shader\Shader.h">
+    <ClInclude Include="Engine\Shaders\Shader\Shader.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Shaders\ShaderProgram\ShaderProgram.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Utilities\stb_image.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Utilities\OGL.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Objects\ElementBufferObject\ElementBufferObject.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Objects\VertexArrayObject\VertexArrayObject.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\Objects\VertexArrayObject\VertexBufferLayout.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Shaders\ShadersSources\Vertex\vert1.vert.glsl" />
-    <None Include="Shaders\ShadersSources\Fragment\frag1.frag.glsl" />
+    <None Include="Engine\Shaders\ShadersSources\Fragment\frag1.frag.glsl" />
+    <None Include="Engine\Shaders\ShadersSources\Vertex\vert1.vert.glsl" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Engine\Textures\image.jpg">
+      <Filter>Файлы ресурсов</Filter>
+    </Image>
   </ItemGroup>
 </Project>

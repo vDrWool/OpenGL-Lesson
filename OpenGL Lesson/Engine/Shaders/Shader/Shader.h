@@ -4,7 +4,7 @@
 #include <sstream>
 #include <iostream>
 
-#include "glad/glad.h"
+#include "../../Utilities/OGL.h"
 
 namespace OGL{
 	template<GLenum type>
