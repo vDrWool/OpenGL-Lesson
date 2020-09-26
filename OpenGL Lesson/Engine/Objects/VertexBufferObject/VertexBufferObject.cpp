@@ -2,25 +2,25 @@
 
 OGL::VertexBufferObject::VertexBufferObject(const GLfloat* data, const GLsizeiptr size, GLenum usage)
 {
-	GLCall(glGenBuffers(1, &(this->_ID)));
-	GLCall(glBindBuffer(GL_ARRAY_BUFFER, this->_ID));
-	GLCall(glBufferData(GL_ARRAY_BUFFER, size, data, usage));
+	glGenBuffers(1, &(this->_ID));
+	glBindBuffer(GL_ARRAY_BUFFER, this->_ID);
+	glBufferData(GL_ARRAY_BUFFER, size, data, usage);
 }
 
 
 
 void OGL::VertexBufferObject::bind(const GLuint id)
 {
-	GLCall(glBindBuffer(GL_ARRAY_BUFFER, id));
+	glBindBuffer(GL_ARRAY_BUFFER, id);
 }
 
 void OGL::VertexBufferObject::unBindAll()
 {
-	GLCall(glBindBuffer(GL_ARRAY_BUFFER, 0));
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
 }
 
 
-inline GLuint OGL::VertexBufferObject::getID() const noexcept
+const GLuint OGL::VertexBufferObject::getID() const noexcept
 {
 	return this->_ID;
 }
@@ -29,5 +29,5 @@ inline GLuint OGL::VertexBufferObject::getID() const noexcept
 
 OGL::VertexBufferObject::~VertexBufferObject()
 {
-	GLCall(glDeleteBuffers(1, &(this->_ID)));
+	glDeleteBuffers(1, &(this->_ID));
 }

@@ -1,7 +1,7 @@
 #pragma once
 #include <vector>
 
-#include "../../Utilities/OGL.h"
+#include "glad/glad.h"
 
 
 namespace OGL
@@ -17,11 +17,6 @@ namespace OGL
 
 	class VertexBufferLayout
 	{
-	public:
-		VertexBufferLayout(const VertexBufferLayout&) = delete;
-		VertexBufferLayout(const VertexBufferLayout&&) = delete;
-
-		VertexBufferLayout& operator = (const VertexBufferLayout&) = delete;
 	public:
 		VertexBufferLayout();
 
@@ -49,8 +44,8 @@ namespace OGL
 			this->_stride += count * VertexBufferElement::getSizeOfType(GL_UNSIGNED_BYTE);
 		}
 
-		[[nodiscard]] inline const std::vector<VertexBufferElement>& getElements() const;
-		[[nodiscard]] inline GLuint getStride() const;
+		const std::vector<VertexBufferElement>& getElements() const;
+		GLuint getStride() const;
 	private:
 		std::vector<VertexBufferElement> _elements{};
 		GLuint _stride{};

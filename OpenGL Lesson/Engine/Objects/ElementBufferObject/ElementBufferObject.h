@@ -1,5 +1,5 @@
 #pragma once
-#include "../../Utilities/OGL.h"
+#include "glad/glad.h"
 
 
 namespace OGL
@@ -7,17 +7,12 @@ namespace OGL
 	class ElementBufferObject
 	{
 	public:
-		ElementBufferObject(const ElementBufferObject&) = delete;
-		ElementBufferObject(const ElementBufferObject&&) = delete;
-
-		ElementBufferObject& operator = (const ElementBufferObject&) = delete;
-	public:
 		ElementBufferObject(const GLuint* data, const GLsizeiptr size, GLenum usage);
 
 		static void bind(const GLuint id);
 		static void unBindAll();
 
-		[[nodiscard]] inline GLuint getID() const noexcept;
+		GLuint getID() const noexcept;
 
 		~ElementBufferObject();
 	private:

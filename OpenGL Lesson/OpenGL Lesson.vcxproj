@@ -152,8 +152,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Engine\Objects\ElementBufferObject\ElementBufferObject.cpp" />
-    <ClCompile Include="Engine\ForDubuging\OGLdebug.cpp" />
-    <ClCompile Include="Engine\ForDubuging\OGLdebug.h" />
+    <ClCompile Include="Engine\Objects\VertexArrayObject\VertexArrayObject.cpp" />
     <ClCompile Include="Engine\Objects\VertexArrayObject\VertexBufferLayout.cpp" />
     <ClCompile Include="Engine\Utilities\glad.c" />
     <ClCompile Include="Engine\Main.cpp" />
@@ -161,17 +160,15 @@
     <ClCompile Include="Engine\Shaders\ShaderProgram\ShaderProgram.cpp" />
     <ClCompile Include="Engine\Utilities\stb_image.cpp" />
     <ClCompile Include="Engine\Objects\VertexBufferObject\VertexBufferObject.cpp" />
-    <ClCompile Include="Engine\Objects\VertexArrayObject\VertexArrayObject.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Objects\ElementBufferObject\ElementBufferObject.h" />
+    <ClInclude Include="Engine\Objects\VertexArrayObject\VertexArrayObject.h" />
     <ClInclude Include="Engine\Objects\VertexArrayObject\VertexBufferLayout.h" />
-    <ClInclude Include="Engine\Utilities\OGL.h" />
     <ClInclude Include="Engine\Shaders\Shader\Shader.h" />
     <ClInclude Include="Engine\Shaders\ShaderProgram\ShaderProgram.h" />
     <ClInclude Include="Engine\Utilities\stb_image.h" />
     <ClInclude Include="Engine\Objects\VertexBufferObject\VertexBufferObject.h" />
-    <ClInclude Include="Engine\Objects\VertexArrayObject\VertexArrayObject.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Engine\Shaders\ShadersSources\Fragment\frag1.frag.glsl" />

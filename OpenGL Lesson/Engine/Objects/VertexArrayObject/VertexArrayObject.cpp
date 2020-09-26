@@ -2,17 +2,17 @@
 
 OGL::VertexArrayObject::VertexArrayObject()
 {
-    GLCall(glGenVertexArrays(1, &(this->_ID)));
+    glGenVertexArrays(1, &(this->_ID));
 }
 
 void OGL::VertexArrayObject::bind(const GLuint id)
 {
-    GLCall(glBindVertexArray(id));
+    glBindVertexArray(id);
 }
 
 void OGL::VertexArrayObject::unBindAll()
 {
-    GLCall(glBindVertexArray(0));
+    glBindVertexArray(0);
 }
 
 void OGL::VertexArrayObject::addBuffer(const VertexBufferObject& vbo, const VertexBufferLayout& vbl)
@@ -25,9 +25,9 @@ void OGL::VertexArrayObject::addBuffer(const VertexBufferObject& vbo, const Vert
 
     for (GLuint i{ 0 }; i < elements.size(); i++)
     {
-        GLCall(glEnableVertexAttribArray(i));
-        GLCall(glVertexAttribPointer(i, elements[i].count, elements[i].type,
-            elements[i].normolised, vbl.getStride(), reinterpret_cast<void*>(pointer)));
+        glEnableVertexAttribArray(i);
+        glVertexAttribPointer(i, elements[i].count, elements[i].type,
+            elements[i].normolised, vbl.getStride(), reinterpret_cast<void*>(pointer));
 
         pointer += elements[i].count * VertexBufferElement::getSizeOfType(elements[i].type);
     }
@@ -40,5 +40,5 @@ GLuint OGL::VertexArrayObject::getID() const noexcept
 
 OGL::VertexArrayObject::~VertexArrayObject()
 {
-    GLCall(glDeleteVertexArrays(1, &(this->_ID)));
+    glDeleteVertexArrays(1, &(this->_ID));
 }

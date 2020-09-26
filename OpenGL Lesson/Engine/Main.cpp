@@ -3,9 +3,10 @@
 #include <random>
 
 
-#include "Utilities/OGL.h"
+
 #include "Utilities/stb_image.h"
 
+#include "glad/glad.h"
 #include "GLFW/glfw3.h"
 
 #include "glm/glm.hpp"
@@ -72,8 +73,8 @@ auto main() -> int
 
 
 	OGL::ShaderProgram progShader(
-		OGL::VertexShader("Shaders/ShadersSources/Vertex/vert1.vert.glsl"),
-		OGL::FragmentShader("Shaders/ShadersSources/Fragment/frag1.frag.glsl")
+		OGL::VertexShader("Engine/Shaders/ShadersSources/Vertex/vert1.vert.glsl"),
+		OGL::FragmentShader("Engine/Shaders/ShadersSources/Fragment/frag1.frag.glsl")
 	);
 
 
@@ -93,7 +94,7 @@ auto main() -> int
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
 	int width{}, height{}, nrChannels{};
-	unsigned char* data{ stbi_load("Textures/image.jpg", &width, &height, &nrChannels, 0) };
+	unsigned char* data{ stbi_load("Engine/Textures/image.jpg", &width, &height, &nrChannels, 0) };
 	if (data)
 	{
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
@@ -144,17 +145,25 @@ auto main() -> int
 		0, 3, 2
 	};
 
-	//OGL::VAO vao{};
-	//OGL::VBO vbo{ VBOsData[0], sizeof(VBOsData[0]), GL_STATIC_DRAW };
+	OGL::VAO vao[4]{};
+	OGL::VBO vbo[4] = {
+		{ VBOsData[0], sizeof(VBOsData[0]), GL_STATIC_DRAW },
+		{ VBOsData[1], sizeof(VBOsData[1]), GL_STATIC_DRAW },
+		{ VBOsData[2], sizeof(VBOsData[2]), GL_STATIC_DRAW },
+		{ VBOsData[3], sizeof(VBOsData[3]), GL_STATIC_DRAW }
+	};
 
-	//OGL::VBL layout{};
-	//layout.push<GLfloat>(3);
-	//layout.push<GLfloat>(3);
-	//layout.push<GLfloat>(2);
+	OGL::VBL layout{};
+	layout.push<GLfloat>(3);
+	layout.push<GLfloat>(3);
+	layout.push<GLfloat>(2);
+	for (auto i{ 0 }; i < 4; i++)
+	{
+		vao[i].addBuffer(vbo[i], layout);
+	}
 
-	//vao.addBuffer(vbo, layout);
 
-	//OGL::EBO ebo{ eboIndexes, sizeof(eboIndexes), GL_STATIC_DRAW };
+	OGL::EBO ebo{ eboIndexes, sizeof(eboIndexes), GL_STATIC_DRAW };
 
 	//===============================================================================
 
@@ -175,13 +184,14 @@ auto main() -> int
 		glClear(GL_COLOR_BUFFER_BIT);
 
 		progShader.use();
-
-
 		glActiveTexture(GL_TEXTURE0);
 		glBindTexture(GL_TEXTURE_2D, texture);
-		//OGL::VAO::bind(vao.getID());
-		//OGL::EBO::bind(ebo.getID());
-		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+		for (auto i{ 0 }; i < 4; i++)
+		{
+			OGL::VAO::bind(vao[i].getID());
+			OGL::EBO::bind(ebo.getID());
+			glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+		}
 
 
 		glfwSwapBuffers(mainWindow);

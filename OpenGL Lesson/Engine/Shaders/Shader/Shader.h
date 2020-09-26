@@ -4,7 +4,7 @@
 #include <sstream>
 #include <iostream>
 
-#include "../../Utilities/OGL.h"
+#include "glad/glad.h"
 
 namespace OGL{
 	template<GLenum type>
@@ -14,8 +14,8 @@ namespace OGL{
 		Shader();
 		Shader(std::string sourcePath);
 
-		[[nodiscard]] const char* getShaderSource() const noexcept;
-		[[nodiscard]] GLuint getID() const noexcept;
+		const char* getShaderSource() const noexcept;
+		GLuint getID() const noexcept;
 
 		virtual ~Shader() noexcept;
 	protected:

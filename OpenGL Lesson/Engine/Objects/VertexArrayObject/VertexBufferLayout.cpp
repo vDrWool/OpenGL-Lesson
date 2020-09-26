@@ -10,7 +10,6 @@ GLuint OGL::VertexBufferElement::getSizeOfType(GLuint type)
 		case GL_UNSIGNED_BYTE: return sizeof(GLbyte);
 	}
 
-	ASSERT(false);
 	return 0;
 }
 
