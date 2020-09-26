@@ -160,6 +160,7 @@
     <ClCompile Include="Engine\Shaders\ShaderProgram\ShaderProgram.cpp" />
     <ClCompile Include="Engine\Utilities\stb_image.cpp" />
     <ClCompile Include="Engine\Objects\VertexBufferObject\VertexBufferObject.cpp" />
+    <ClCompile Include="Main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Objects\ElementBufferObject\ElementBufferObject.h" />

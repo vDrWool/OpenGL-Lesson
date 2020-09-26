@@ -42,6 +42,9 @@
     <ClCompile Include="Engine\Objects\VertexArrayObject\VertexArrayObject.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="Main.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Objects\VertexBufferObject\VertexBufferObject.h">
