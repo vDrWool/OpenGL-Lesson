@@ -5,20 +5,20 @@ OGL::VertexArrayObject::VertexArrayObject()
     glGenVertexArrays(1, &(this->_ID));
 }
 
-void OGL::VertexArrayObject::bind(const GLuint id)
+void OGL::VertexArrayObject::Bind(const GLuint id)
 {
     glBindVertexArray(id);
 }
 
-void OGL::VertexArrayObject::unBindAll()
+void OGL::VertexArrayObject::Unbind()
 {
     glBindVertexArray(0);
 }
 
 void OGL::VertexArrayObject::addBuffer(const VertexBufferObject& vbo, const VertexBufferLayout& vbl)
 {
-    VAO::bind(this->_ID);
-    VBO::bind(vbo.getID());
+    VAO::Bind(this->_ID);
+    VBO::Bind(vbo.getID());
 
     const auto& elements{ vbl.getElements() };
     GLuint pointer{};

@@ -23,26 +23,42 @@ OGL::ShaderProgram::ShaderProgram(const VertexShader&& vShader,
 
 
 
-void OGL::ShaderProgram::use() const noexcept
+void OGL::ShaderProgram::Bind(const GLuint id)
 {
-	glUseProgram(this->_ID);
+	glUseProgram(id);
+}
+
+void OGL::ShaderProgram::Unbind()
+{
+	glUseProgram(0);
+}
+
+
+const GLuint OGL::ShaderProgram::getID() const noexcept
+{
+	return this->_ID;
 }
 
 
 
-void OGL::ShaderProgram::setBool(const std::string &name, bool value) const
+void OGL::ShaderProgram::setUniform1b(const std::string &name, bool value)
 {
-	glUniform1i(glGetUniformLocation(this->_ID, name.c_str()), static_cast<int>(value));
+	glUniform1i(this->privateGetUniformLocation(name), static_cast<int>(value));
 }
 
-void OGL::ShaderProgram::setInt(const std::string &name, int value) const
+void OGL::ShaderProgram::setUniform1i(const std::string &name, int value)
 {
-	glUniform1i(glGetUniformLocation(this->_ID, name.c_str()), value);
+	glUniform1i(this->privateGetUniformLocation(name), value);
 }
 
-void OGL::ShaderProgram::setFloat(const std::string& name, float value) const
+void OGL::ShaderProgram::setUniform1f(const std::string& name, float value)
 {
-	glUniform1f(glGetUniformLocation(this->_ID, name.c_str()), value);
+	glUniform1f(this->privateGetUniformLocation(name), value);
+}
+
+void OGL::ShaderProgram::setUniform4f(const std::string& name, float u1, float u2, float u3, float u4)
+{
+	glUniform4f(this->privateGetUniformLocation(name), u1, u2, u3, u4);
 }
 
 
@@ -50,4 +66,19 @@ void OGL::ShaderProgram::setFloat(const std::string& name, float value) const
 OGL::ShaderProgram::~ShaderProgram()
 {
 	glDeleteProgram(this->_ID);
+}
+
+
+
+GLint OGL::ShaderProgram::privateGetUniformLocation(const std::string& name)
+{
+	if (this->_uniformCache.find(name) != this->_uniformCache.end())
+		return this->_uniformCache[name];
+
+	auto location{ glGetUniformLocation(this->_ID, name.c_str()) };
+	if (location == -1)
+		std::cout << "WARNING::SHADERPROGRAM::UNIFORM::[\"" << name << "\"]_DOESN'T_EXIST!" << std::endl;
+	
+	this->_uniformCache[name] = location;
+	return location;
 }

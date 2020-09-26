@@ -9,8 +9,8 @@ namespace OGL
 	public:
 		VertexArrayObject();
 
-		static void bind(const GLuint id);
-		static void unBindAll();
+		static void Bind(const GLuint id);
+		static void Unbind();
 
 		void addBuffer(const VertexBufferObject& vbo, const VertexBufferLayout& vbl);
 

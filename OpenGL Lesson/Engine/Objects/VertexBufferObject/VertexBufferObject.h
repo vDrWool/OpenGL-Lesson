@@ -7,8 +7,8 @@ namespace OGL {
 	public:
 		VertexBufferObject(const GLfloat* data, const GLsizeiptr size, GLenum usage);
 
-		static void bind(const GLuint id);
-		static void unBindAll();
+		static void Bind(const GLuint id);
+		static void Unbind();
 
 		const GLuint getID() const noexcept;
 

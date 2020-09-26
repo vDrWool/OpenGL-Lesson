@@ -155,12 +155,12 @@
     <ClCompile Include="Engine\Objects\VertexArrayObject\VertexArrayObject.cpp" />
     <ClCompile Include="Engine\Objects\VertexArrayObject\VertexBufferLayout.cpp" />
     <ClCompile Include="Engine\Utilities\glad.c" />
-    <ClCompile Include="Engine\Main.cpp" />
     <ClCompile Include="Engine\Shaders\Shader\Shader.cpp" />
     <ClCompile Include="Engine\Shaders\ShaderProgram\ShaderProgram.cpp" />
     <ClCompile Include="Engine\Utilities\stb_image.cpp" />
     <ClCompile Include="Engine\Objects\VertexBufferObject\VertexBufferObject.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Engine\Renderer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\Objects\ElementBufferObject\ElementBufferObject.h" />
@@ -170,13 +170,14 @@
     <ClInclude Include="Engine\Shaders\ShaderProgram\ShaderProgram.h" />
     <ClInclude Include="Engine\Utilities\stb_image.h" />
     <ClInclude Include="Engine\Objects\VertexBufferObject\VertexBufferObject.h" />
+    <ClInclude Include="Engine\Renderer.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Engine\Shaders\ShadersSources\Fragment\frag1.frag.glsl" />
     <None Include="Engine\Shaders\ShadersSources\Vertex\vert1.vert.glsl" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="Engine\Textures\image.jpg" />
+    <Image Include="Engine\Textures\TextureSources\image.jpg" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

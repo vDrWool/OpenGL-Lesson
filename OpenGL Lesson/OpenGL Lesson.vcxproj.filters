@@ -24,9 +24,6 @@
     <ClCompile Include="Engine\Shaders\ShaderProgram\ShaderProgram.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="Engine\Main.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
     <ClCompile Include="Engine\Utilities\stb_image.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
@@ -43,6 +40,9 @@
       <Filter>Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="Main.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="Engine\Renderer.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>
@@ -68,13 +68,16 @@
     <ClInclude Include="Engine\Objects\VertexArrayObject\VertexArrayObject.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
+    <ClInclude Include="Engine\Renderer.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Engine\Shaders\ShadersSources\Fragment\frag1.frag.glsl" />
     <None Include="Engine\Shaders\ShadersSources\Vertex\vert1.vert.glsl" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="Engine\Textures\image.jpg">
+    <Image Include="Engine\Textures\TextureSources\image.jpg">
       <Filter>Файлы ресурсов</Filter>
     </Image>
   </ItemGroup>

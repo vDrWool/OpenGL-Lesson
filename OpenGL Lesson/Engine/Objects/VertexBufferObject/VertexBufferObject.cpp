@@ -9,12 +9,12 @@ OGL::VertexBufferObject::VertexBufferObject(const GLfloat* data, const GLsizeipt
 
 
 
-void OGL::VertexBufferObject::bind(const GLuint id)
+void OGL::VertexBufferObject::Bind(const GLuint id)
 {
 	glBindBuffer(GL_ARRAY_BUFFER, id);
 }
 
-void OGL::VertexBufferObject::unBindAll()
+void OGL::VertexBufferObject::Unbind()
 {
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 }

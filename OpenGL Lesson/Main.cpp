@@ -13,11 +13,7 @@
 #include "glm/gtc/matrix_transform.hpp"
 #include "glm/gtc/type_ptr.hpp"
 
-#include "Engine/Shaders/ShaderProgram/ShaderProgram.h"
-#include "Engine/Objects/VertexArrayObject/VertexArrayObject.h"
-#include "Engine/Objects/VertexBufferObject/VertexBufferObject.h"
-#include "Engine/Objects/ElementBufferObject/ElementBufferObject.h"
-
+#include "Engine/Renderer.h"
 
 
 auto processInput(GLFWwindow*) -> void;
@@ -31,7 +27,7 @@ auto main() -> int
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-	GLFWwindow* mainWindow{ glfwCreateWindow(800, 640, "GLFW window", nullptr, nullptr) };
+	GLFWwindow* mainWindow{ glfwCreateWindow(640, 640, "GLFW window", nullptr, nullptr) };
 	if (mainWindow == nullptr)
 	{
 		std::cerr << "ERROR: Failed to create GLFW window!" << std::endl;
@@ -47,7 +43,7 @@ auto main() -> int
 		return -2;
 	}
 
-	glViewport(0, 0, 800, 640);
+	glViewport(0, 0, 640, 640);
 
 	glfwSetFramebufferSizeCallback(
 		mainWindow,
@@ -84,7 +80,7 @@ auto main() -> int
 	stbi_set_flip_vertically_on_load(true);
 
 	GLuint texture{};
-	glGenTextures(0, &texture);
+	glGenTextures(1, &texture);
 
 	glBindTexture(GL_TEXTURE_2D, texture);
 
@@ -94,7 +90,7 @@ auto main() -> int
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
 	int width{}, height{}, nrChannels{};
-	unsigned char* data{ stbi_load("Engine/Textures/image.jpg", &width, &height, &nrChannels, 0) };
+	unsigned char* data{ stbi_load("Engine/Textures/TextureSources/image.jpg", &width, &height, &nrChannels, 0) };
 	if (data)
 	{
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
@@ -105,6 +101,7 @@ auto main() -> int
 		std::cout << "Failed to load texture!" << std::endl;
 	}
 
+	glBindTexture(GL_TEXTURE_2D, 0);
 	stbi_image_free(data);
 
 
@@ -115,34 +112,34 @@ auto main() -> int
 	GLfloat VBOsData[][32] = {
 		{
 			// Coord.             // Color.           //TextureCoord.  
-			0.1f,  0.9f,  0.0f,   0.0f, 1.0f, 0.0f,   1.0f, 1.0f,
-			0.9f,  0.9f,  0.0f,   0.0f, 0.0f, 1.0f,   1.0f, 0.0f,
-			0.9f,  0.1f,  0.0f,   0.0f, 1.0f, 0.0f,   0.0f, 0.0f,
-			0.1f,  0.1f,  0.0f,   1.0f, 0.0f, 0.0f,   0.0f, 1.0f
+			0.1f,  0.1f,  0.0f,   1.0f, 0.0f, 0.0f,   0.0f, 0.0f,
+			0.1f,  0.9f,  0.0f,   0.0f, 1.0f, 0.0f,   0.0f, 1.0f,
+			0.9f,  0.9f,  0.0f,   0.0f, 0.0f, 1.0f,   1.0f, 1.0f,
+			0.9f,  0.1f,  0.0f,   0.0f, 1.0f, 0.0f,   1.0f, 0.0f
 	   },
 	   {
-		   -0.9f,  0.9f,  0.0f,   0.0f, 0.0f, 1.0f,   1.0f, 1.0f,
-		   -0.1f,  0.9f,  0.0f,   0.0f, 1.0f, 0.0f,   1.0f, 0.0f,
 		   -0.1f,  0.1f,  0.0f,   1.0f, 0.0f, 0.0f,   0.0f, 0.0f,
-		   -0.9f,  0.1f,  0.0f,   0.0f, 1.0f, 0.0f,   0.0f, 1.0f
+		   -0.1f,  0.9f,  0.0f,   0.0f, 1.0f, 0.0f,   0.0f, 1.0f,
+		   -0.9f,  0.9f,  0.0f,   0.0f, 0.0f, 1.0f,   1.0f, 1.0f,
+		   -0.9f,  0.1f,  0.0f,   0.0f, 1.0f, 0.0f,   1.0f, 0.0f
 	   },
 	   {
-		   -0.9f, -0.1f,  0.0f,   0.0f, 1.0f, 0.0f,   1.0f, 1.0f,
-		   -0.1f, -0.1f,  0.0f,   1.0f, 0.0f, 0.0f,   1.0f, 0.0f,
-		   -0.1f, -0.9f,  0.0f,   0.0f, 1.0f, 0.0f,   0.0f, 0.0f,
-		   -0.9f, -0.9f,  0.0f,   0.0f, 0.0f, 1.0f,   0.0f, 1.0f
+		   -0.1f, -0.1f,  0.0f,   1.0f, 0.0f, 0.0f,   0.0f, 0.0f,
+		   -0.1f, -0.9f,  0.0f,   0.0f, 1.0f, 0.0f,   0.0f, 1.0f,
+		   -0.9f, -0.9f,  0.0f,   0.0f, 0.0f, 1.0f,   1.0f, 1.0f,
+		   -0.9f, -0.1f,  0.0f,   0.0f, 1.0f, 0.0f,   1.0f, 0.0f
 	   },
 	   {
-			0.1f, -0.1f,  0.0f,   1.0f, 0.0f, 0.0f,   1.0f, 1.0f,
-			0.9f, -0.1f,  0.0f,   0.0f, 1.0f, 0.0f,   1.0f, 0.0f,
-			0.9f, -0.9f,  0.0f,   0.0f, 0.0f, 1.0f,   0.0f, 0.0f,
-			0.1f, -0.9f,  0.0f,   0.0f, 1.0f, 0.0f,   0.0f, 1.0f
+			0.1f, -0.1f,  0.0f,   1.0f, 0.0f, 0.0f,   0.0f, 0.0f,
+			0.1f, -0.9f,  0.0f,   0.0f, 1.0f, 0.0f,   0.0f, 1.0f,
+			0.9f, -0.9f,  0.0f,   0.0f, 0.0f, 1.0f,   1.0f, 1.0f,
+			0.9f, -0.1f,  0.0f,   0.0f, 1.0f, 0.0f,   1.0f, 0.0f
 	   }
 	};
 
 	GLuint eboIndexes[] = {
 		0, 1, 2,
-		0, 3, 2
+		2, 3, 0
 	};
 
 	OGL::VAO vao[4]{};
@@ -162,9 +159,12 @@ auto main() -> int
 		vao[i].addBuffer(vbo[i], layout);
 	}
 
+	OGL::VBO::Unbind();
+	OGL::VAO::Unbind();
 
 	OGL::EBO ebo{ eboIndexes, sizeof(eboIndexes), GL_STATIC_DRAW };
 
+	OGL::EBO::Unbind();
 	//===============================================================================
 
 
@@ -172,27 +172,25 @@ auto main() -> int
 	std::uniform_real_distribution<float> rand(0.1f, 1.0f);
 
 
-	progShader.use();
-	progShader.setInt("texture", 0);
+	OGL::ShaderProgram::Bind(progShader.getID());
+	progShader.setUniform1i("ourTexture", 0);
+	OGL::ShaderProgram::Unbind();
 
 
-	glClearColor(0.1f, 0.4f, 0.5f, 1.0f);
+	//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+	glClearColor(0.4f, 0.5f, 0.5f, 1.0f);
 	while (!glfwWindowShouldClose(mainWindow))
 	{
 		processInput(mainWindow);
 
 		glClear(GL_COLOR_BUFFER_BIT);
 
-		progShader.use();
 		glActiveTexture(GL_TEXTURE0);
 		glBindTexture(GL_TEXTURE_2D, texture);
 		for (auto i{ 0 }; i < 4; i++)
 		{
-			OGL::VAO::bind(vao[i].getID());
-			OGL::EBO::bind(ebo.getID());
-			glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+			OGL::Renderer::Draw(vao[i], ebo, progShader);
 		}
-
 
 		glfwSwapBuffers(mainWindow);
 		glfwPollEvents();

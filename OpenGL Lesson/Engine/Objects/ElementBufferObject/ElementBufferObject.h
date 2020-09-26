@@ -7,16 +7,18 @@ namespace OGL
 	class ElementBufferObject
 	{
 	public:
-		ElementBufferObject(const GLuint* data, const GLsizeiptr size, GLenum usage);
+		ElementBufferObject(const GLuint* data, const GLuint size, GLenum usage);
 
-		static void bind(const GLuint id);
-		static void unBindAll();
+		static void Bind(const GLuint id);
+		static void Unbind();
 
 		GLuint getID() const noexcept;
+		GLuint getCount() const noexcept;
 
 		~ElementBufferObject();
 	private:
 		GLuint _ID{};
+		GLuint _count{};
 	};
 
 	using EBO = ElementBufferObject;
